@@ -1,0 +1,66 @@
+***************************
+* Compiling the program   *
+***************************
+The program has been able to be compiled under g++ 2.7.0 and g++ 2.6.3. If
+your computer uses BSD operating system, just type "make", and an executable
+file "dopart" will be generated. If you are using SYSV instead, you need to
+comment out a line in "makefile" to compile (look inside the file please).
+
+***************************
+* Usage of the program    *
+***************************
+The program accepts 4 arguments:
+ (1) hypergraph file name (2) output file name (3) random seed  (4) cut-ratio
+ cut-ratio is the minimum percent of cells on one partition. Consecutive run
+ of the program will append the results to the output file.
+
+For example, the following command will partition p1.net using random seed 1,
+and append output result to file "level". The balance condition is 45% - 55%.
+
+ ./dohpart p1.net level 1 0.45
+
+The output result of this command look like:
+
+p1.net,seed, 1,final cutset, 83,time, 0.22 ,376,457,passes 8
+
+That is: hypergraph file name, random seed, cutset, time in seconds, # of cells
+in each partition, # of passes.
+
+****************************
+* Interpreting the results *
+****************************
+
+We have also supplied a C program stats.c which may be compiled
+with cc or any C compiler.  stats is used to parse the program.
+It takes an output file from the program and finds averages and
+minimums, along with total runtimes for multiple runs.  It takes
+the number of runs and output file as parameters.  It can be
+used with the Unix Shell runs.sh.  Any questions should be
+directed to Chuck Alpert at cheese@cs.ucla.edu.
+
+For example
+runs.sh p1 20
+
+produces the file Results/p1.res
+
+nets/p1.net,seed, 1,final cutset, 77,time, 0.2 ,389,444,passes 6
+nets/p1.net,seed, 2,final cutset, 90,time, 0.28 ,378,455,passes 11
+nets/p1.net,seed, 3,final cutset, 73,time, 0.19 ,399,434,passes 7
+nets/p1.net,seed, 4,final cutset, 84,time, 0.2 ,455,378,passes 7
+nets/p1.net,seed, 5,final cutset, 81,time, 0.22 ,420,413,passes 8
+nets/p1.net,seed, 6,final cutset, 82,time, 0.19 ,374,459,passes 7
+nets/p1.net,seed, 7,final cutset, 90,time, 0.2 ,438,395,passes 7
+nets/p1.net,seed, 8,final cutset, 73,time, 0.27 ,435,398,passes 10
+nets/p1.net,seed, 9,final cutset, 79,time, 0.17 ,376,457,passes 6
+nets/p1.net,seed, 10,final cutset, 101,time, 0.19 ,456,377,passes 7
+nets/p1.net,seed, 11,final cutset, 63,time, 0.24 ,374,459,passes 9
+nets/p1.net,seed, 12,final cutset, 66,time, 0.17 ,446,387,passes 6
+nets/p1.net,seed, 13,final cutset, 66,time, 0.2 ,451,382,passes 7
+nets/p1.net,seed, 14,final cutset, 64,time, 0.19 ,459,374,passes 7
+nets/p1.net,seed, 15,final cutset, 80,time, 0.25 ,376,457,passes 9
+nets/p1.net,seed, 16,final cutset, 62,time, 0.17 ,374,459,passes 6
+nets/p1.net,seed, 17,final cutset, 82,time, 0.29 ,375,458,passes 11
+nets/p1.net,seed, 18,final cutset, 76,time, 0.16 ,385,448,passes 6
+nets/p1.net,seed, 19,final cutset, 86,time, 0.2 ,385,448,passes 7
+nets/p1.net,seed, 20,final cutset, 103,time, 0.11 ,393,440,passes 4
+Min cut 62,  Avg cut 78.90,  Avg time 0.20
