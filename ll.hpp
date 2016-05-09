@@ -5,7 +5,7 @@
 #define NULL 0
 #endif
 
-#include <fstream.h>
+#include <fstream>
 
 class node;
 
@@ -31,6 +31,7 @@ class LL
   node* current;             // ptr to current point of ll
 
   LL(void);                  // constructor
+  void increment(void);		// same as ++ operator. Just adding this to avoid issues with later versions of g++
   void addhead(node* nnode); // adds nnode to head of ll
   void addtail(node* nnode); // adds nnode to tail of ll
   node* removehead(void);    // removes head of ll, returns ptr to it

@@ -2,6 +2,8 @@
 #include "system.hpp"
 #include <stdlib.h>
 
+using namespace std;
+
 int SEED =1;
 double RATIO =0.5;
 

@@ -1,5 +1,5 @@
 #comment the following line if you are using SYSV
-DFLAG=-DBSD
+#DFLAG=-DBSD
 dohpart: ll.o hgraph.o dohpart.o system.o
 	g++  -O2 -o dohpart dohpart.o hgraph.o ll.o system.o -lm
 

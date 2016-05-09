@@ -1,10 +1,11 @@
-#include <fstream.h>
+#include <fstream>
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 // #include <process.h>
 #include "hgraph.hpp"
-
+#include <iostream>
+using namespace std;
 //#define debug
 
 void error(char* s, char* s2="")
@@ -123,7 +124,7 @@ void parthgraph::initgains(void)
 			   cells[count].gain++;
 			if( (nets[nnum].unlock[to]+nets[nnum].lock[to])==0)
 			   cells[count].gain--;
-			cells[count].first++;
+			cells[count].first.increment();
 		 }
 	  }
    }
@@ -224,7 +225,7 @@ void parthgraph::swapall(void)
 			else if(curnet->unlock[from]==1)
 			   fixgain(curnet->first,1,1,from);
 		 }
-		 bestcell->first++;
+		 bestcell->first.increment();
 	  }
 	  bestcell=gethighest();
 	  if(bestcell==NULL)
@@ -255,7 +256,7 @@ void parthgraph::fixgain(LL &first,int operation,int single,int sameside)
 			   buckets[block][cellptr->gain+pmax].addhead(cellptr->gainbucket);
 			}
 		 }
-		 first++;
+		 first.increment();
 	  }
    }
    else
@@ -275,7 +276,7 @@ void parthgraph::fixgain(LL &first,int operation,int single,int sameside)
 			   buckets[block][cellptr->gain+pmax].addhead(cellptr->gainbucket);
 			}
 		 }
-		 first++;
+		 first.increment();
 	  }
    }
 }
@@ -346,7 +347,7 @@ void parthgraph::getprefix(int& prenum)
 		 max=current;
 		 prenum=curnum;
 	  }
-	  free++;
+	  free.increment();
    }
    if(max<=0)
 	  prenum=0;
@@ -382,7 +383,7 @@ void parthgraph::reinit(int prenum)
 	  cellptr->gainfromlock=LOCKED;
 	  cellptr->gain=0;
 	  free.removenode(cellptr->gainbucket);
-	  free++;
+	  free.increment();
    }
 
    for(count=0;count<numnets;count++)
@@ -396,7 +397,7 @@ void parthgraph::reinit(int prenum)
 	  while(nets[count].first.current!=NULL)
 	  {
 		 nets[count].unlock[ cells[nets[count].first.current->number].block ]++;
-		 nets[count].first++;
+		 nets[count].first.increment();
 	  }
    }
 
@@ -420,7 +421,7 @@ int parthgraph::cutset(void)
 			sidezero=1;
 		 else
 			sideone=1;
-		 nets[count].first++;
+		 nets[count].first.increment();
 	  }
 	  if( (sideone==1) && (sidezero==1) )
 		 cutset++;
@@ -452,7 +453,7 @@ void parthgraph::printBucket()
       {
 		 printf("%d\t", 
 				buckets[part][maxgain[part]+pmax].current->number);
-		 buckets[part][maxgain[part]+pmax]++;
+		 buckets[part][maxgain[part]+pmax].increment();
       }
       printf("\n");
    }

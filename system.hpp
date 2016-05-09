@@ -4,7 +4,7 @@
 #ifndef SystemIncluded
 #define SystemIncluded
 
-#include <iostream.h>
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>     // for seconds()

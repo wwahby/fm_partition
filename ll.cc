@@ -14,6 +14,16 @@ void LL::operator++()
     current=NULL;
   }
 
+void LL::increment(void)
+  {
+//  curcount++;
+//  if (curcount<=length)
+  if(current->next->number!=-1)
+    current=current->next;
+  else
+    current=NULL;
+  }
+
 // ******reset****resets current to point to head of list****************
 // **********************************************************************
 void LL::reset(void)
